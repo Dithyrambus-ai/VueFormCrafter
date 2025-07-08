@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-
 const modules = import.meta.glob('@/views/*/index.vue');
-console.log('modules', modules);
+
+const routes = Object.entries(modules).map(([path, module]) => {
+  const name = path.match(/\/views\/(.*)\/index.vue/)?.[1];
+  return {
+    path: `/${name === 'Home' ? '' : name}`,
+    name: name as string,
+    component: module,
+  };
+});
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
-  ],
+  routes,
 });
 
 export default router;

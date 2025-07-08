@@ -1,8 +1,8 @@
 <template>
-  <div>index</div>
+  <div>组件市场</div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts"  setup>
 
 </script>
 
